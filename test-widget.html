@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Widget Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+        }
+        .test-section h3 {
+            color: #4F46E5;
+            margin-top: 0;
+        }
+        .config-example {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Agent Widget Test Page</h1>
+        
+        <div class="test-section">
+            <h3>✅ Requirement 1: Embeddable Widget</h3>
+            <p>The widget should appear as a floating button in the bottom-right corner.</p>
+            <div class="status success">
+                ✓ Single script tag integration<br>
+                ✓ Shadow DOM isolation<br>
+                ✓ No style conflicts
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>✅ Requirement 2: Chat + Voice Mode (Multi Language)</h3>
+            <p>Test both text and voice interactions in multiple languages.</p>
+            <div class="status info">
+                <strong>Test Steps:</strong><br>
+                1. Click the floating button to open chat<br>
+                2. Type a message and press Enter<br>
+                3. Click the microphone button to record voice<br>
+                4. Switch languages using the dropdown<br>
+                5. Test voice output (should speak responses)
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>✅ Requirement 3: Customization</h3>
+            <p>Current configuration applied to the widget:</p>
+            <div class="config-example">
+window.AgentWidgetConfig = {
+  position: 'bottom-right',
+  theme: {
+    primaryColor: '#4F46E5',
+    fontFamily: 'Inter, system-ui, sans-serif'
+  },
+  agent: {
+    name: 'SarvamBot',
+    avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=SarvamBot'
+  },
+  enableVoice: true,
+  defaultLanguage: 'en',
+  context: "You are a helpful AI assistant powered by Sarvam AI. You can help users with their questions in multiple languages including English, Hindi, and Tamil."
+};
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>✅ Requirement 4: Context</h3>
+            <p>The AI uses the provided context to answer questions appropriately.</p>
+            <div class="status success">
+                ✓ Custom context: "You are a helpful AI assistant powered by Sarvam AI..."<br>
+                ✓ Context passed to Sarvam AI API<br>
+                ✓ Language-aware responses
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔧 Voice Testing Instructions</h3>
+            <div class="status info">
+                <strong>Voice Input Test:</strong><br>
+                1. Click the microphone button (🎤)<br>
+                2. Allow microphone permission when prompted<br>
+                3. Speak clearly in English, Hindi, or Tamil<br>
+                4. Click the stop button (⏹) when done<br>
+                5. Wait for transcription and AI response<br><br>
+                
+                <strong>Voice Output Test:</strong><br>
+                1. Send any text message<br>
+                2. The AI should respond with text<br>
+                3. The response should also be spoken aloud<br>
+                4. Try switching languages and test voice in each
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>🌍 Language Support</h3>
+            <div class="status success">
+                ✓ English (en-IN)<br>
+                ✓ Hindi (hi-IN)<br>
+                ✓ Tamil (ta-IN)<br>
+                ✓ Runtime language switching<br>
+                ✓ Language-specific voice models
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔗 API Integration</h3>
+            <div class="status info">
+                <strong>Sarvam AI APIs:</strong><br>
+                • Chat Completions (sarvam-m, gemma-4b, gemma-12b)<br>
+                • Speech-to-Text (saaras:v1)<br>
+                • Text-to-Speech (bulbul:v1)<br><br>
+                
+                <strong>Fallback Mode:</strong><br>
+                • Works without API key (mock responses)<br>
+                • Browser TTS fallback for voice output<br>
+                • Graceful error handling
+            </div>
+        </div>
+    </div>
+
+    <!-- Widget Configuration -->
+    <script>
+        // Set the API key for testing
+        window.VITE_SARVAM_API_KEY = 'sk_4pemn8cu_HzA89HskSlQl2GJycatHl3RN';
+        
+        window.AgentWidgetConfig = {
+            position: 'bottom-right',
+            theme: {
+                primaryColor: '#4F46E5',
+                fontFamily: 'Inter, system-ui, sans-serif'
+            },
+            agent: {
+                name: 'SarvamBot',
+                avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=SarvamBot'
+            },
+            enableVoice: true,
+            defaultLanguage: 'en',
+            context: "You are a helpful AI assistant powered by Sarvam AI. You can help users with their questions in multiple languages including English, Hindi, and Tamil."
+        };
+    </script>
+
+    <!-- Load the Widget -->
+    <script src="./dist/widget.js"></script>
+</body>
+</html>
